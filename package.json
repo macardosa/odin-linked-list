@@ -1,0 +1,26 @@
+{
+  "name": "odin-linked-list",
+  "version": "1.0.0",
+  "description": "Assignment part of the course [The Odin Project](https://theodinproject.com)",
+  "homepage": "https://github.com/macardosa/odin-linked-list#readme",
+  "bugs": {
+    "url": "https://github.com/macardosa/odin-linked-list/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/macardosa/odin-linked-list.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_OPTIONS='--experimental-vm-modules' jest"
+  },
+  "devDependencies": {
+    "jest": "^30.4.2"
+  },
+  "jest": {
+    "transform": {}
+  }
+}
