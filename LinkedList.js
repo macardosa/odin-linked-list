@@ -1,4 +1,4 @@
-import { Node } from "./Node";
+import { Node } from "./Node.js";
 
 export function createLinkedList() {
     let head = null;
