@@ -263,6 +263,20 @@ describe('insertAt', () => {
     it('should throw RangeError if the method is called with an index that is out of bounds', () => {
         expect(() => list.insertAt(100, 14)).toThrow('Index is out of bounds');
     });
+
+    it('should insert at tail (index === size)', () => {
+        const list = createLinkedList();
+        [1, 2, 3].forEach(item => list.append(item));
+        list.insertAt(3, 4);
+        expect(list.toString()).toBe('( 1 ) -> ( 2 ) -> ( 3 ) -> ( 4 ) -> null');
+    });
+
+    it('should insert multiple values at tail', () => {
+        const list = createLinkedList();
+        [1, 2, 3].forEach(item => list.append(item));
+        list.insertAt(3, 4, 5);
+        expect(list.toString()).toBe('( 1 ) -> ( 2 ) -> ( 3 ) -> ( 4 ) -> ( 5 ) -> null');
+    });
 });
 
 describe('removeAt', () => {
@@ -294,5 +308,10 @@ describe('removeAt', () => {
 
     it('should throw RangeError if the method is called with an index that is out of bounds', () => {
         expect(() => list.removeAt(100)).toThrow('Index is out of bounds');
+    });
+
+    it('should throw RangeError when removing from empty list', () => {
+        const list = createLinkedList();
+        expect(() => list.removeAt(0)).toThrow(RangeError);
     });
 });

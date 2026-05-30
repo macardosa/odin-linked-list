@@ -132,7 +132,7 @@ export function createLinkedList() {
             ptr = ptr.nextNode;
         }
 
-        if (ptr === null) {
+        if (ptr === null && index !== i) {
             throw new RangeError('Index is out of bounds');
         }
 
@@ -145,7 +145,7 @@ export function createLinkedList() {
     }
 
     const removeAt = (index) => {
-        if (index === 0) {
+        if (index === 0 && size() > 0) {
             head = head.nextNode;
             return;
         }
