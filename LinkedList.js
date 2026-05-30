@@ -121,6 +121,52 @@ export function createLinkedList() {
         return -1;
     }
 
+    const insertAt = (index, ...values) => {
+        let i = 0;
+        let ptr = head;
+        let prev = null;
+        while (ptr !== null) {
+            if (i === index) break;
+            i++;
+            prev = ptr;
+            ptr = ptr.nextNode;
+        }
+
+        if (ptr === null) {
+            throw new RangeError('Index is out of bounds');
+        }
+
+        values.forEach(item => {
+            const itemNode = new Node(item);
+            itemNode.nextNode = ptr;
+            prev.nextNode = itemNode;
+            prev = prev.nextNode;
+        });
+    }
+
+    const removeAt = (index) => {
+        if (index === 0) {
+            head = head.nextNode;
+            return;
+        }
+
+        let i = 0;
+        let ptr = head;
+        let prev = null;
+        while (ptr !== null) {
+            if (i === index) break;
+            i++;
+            prev = ptr;
+            ptr = ptr.nextNode;
+        }
+
+        if (ptr === null) {
+            throw new RangeError('Index is out of bounds');
+        }
+
+        prev.nextNode = ptr.nextNode;
+    }
+
     return {
         append,
         prepend,
@@ -131,6 +177,8 @@ export function createLinkedList() {
         at,
         pop,
         contains,
-        findIndex
+        findIndex,
+        insertAt,
+        removeAt
     }
 }

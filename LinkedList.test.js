@@ -236,3 +236,63 @@ describe('findIndex', () => {
         expect(list.findIndex(null)).toBe(-1);
     });
 });
+
+describe('insertAt', () => {
+    const list = createLinkedList();
+    [1, 2, 3].forEach(item => list.append(item));
+
+    it('should exist', () => {
+        expect(list.insertAt).toBeDefined();
+    });
+
+    it.each([
+        {
+            input: [1, 10],
+            expected: "( 1 ) -> ( 10 ) -> ( 2 ) -> ( 3 ) -> null"
+        },
+        {
+            input: [2, 11, 12],
+            expected: "( 1 ) -> ( 10 ) -> ( 11 ) -> ( 12 ) -> ( 2 ) -> ( 3 ) -> null"
+        }
+    ])('should insert new nodes with the given values at the given index', ({ input, expected }) => {
+        list.insertAt(...input);
+        const actual = list.toString();
+        expect(actual).toBe(expected);
+    });
+
+    it('should throw RangeError if the method is called with an index that is out of bounds', () => {
+        expect(() => list.insertAt(100, 14)).toThrow('Index is out of bounds');
+    });
+});
+
+describe('removeAt', () => {
+    const list = createLinkedList();
+    [1, 2, 3, 4, 5].forEach(item => list.append(item));
+
+    it('should exist', () => {
+        expect(list.removeAt).toBeDefined();
+    });
+
+    it.each([
+        {
+            input: 1,
+            expected: "( 1 ) -> ( 3 ) -> ( 4 ) -> ( 5 ) -> null"
+        },
+        {
+            input: 0,
+            expected: "( 3 ) -> ( 4 ) -> ( 5 ) -> null"
+        },
+        {
+            input: 2,
+            expected: "( 3 ) -> ( 4 ) -> null"
+        },
+    ])('should remove the node at the given index', ({ input, expected }) => {
+        list.removeAt(input);
+        const actual = list.toString();
+        expect(actual).toBe(expected);
+    });
+
+    it('should throw RangeError if the method is called with an index that is out of bounds', () => {
+        expect(() => list.removeAt(100)).toThrow('Index is out of bounds');
+    });
+});
